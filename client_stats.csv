@@ -1,0 +1,6 @@
+timestamp,side,client,user,op,filename,bytes,duration_s,rate_MBps,response_s,status,active_clients
+2026-11-16T17:05:57.554,client,,,connect,,0,0.0458,,0.0458,ok,
+2026-11-16T17:06:03.796,client,,,dir,,0,0.0003,,0.0003,ok,
+2026-11-16T17:06:38.257,client,,,upload,sample-25mb.txt,26214400,0.0207,1266.396,0.0002,ok,
+2026-11-16T17:06:41.468,client,,,dir,,0,0.0003,,0.0003,ok,
+2026-11-16T17:07:12.169,client,,,download,sample-25mb.txt,26214400,0.0141,1859.177,0.0002,ok,

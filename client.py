@@ -26,7 +26,7 @@ import time
 from analysis import StatsCollector
 from common import (CHUNK, Progress, auth_response, derive_key, recv_msg,
                     recv_to_file, send_from_file, send_msg, sha256_file,
-                    tune_socket)
+                    tune_socket, help as common_help)
 
 DOWNLOAD_DIR = "downloads"
 
@@ -231,7 +231,7 @@ class Client:
                 elif cmd == "stats":
                     print(self.stats.summary())
                 elif cmd in ("help", "?"):
-                    print(__doc__)
+                    common_help()
                 elif cmd in ("upload", "download", "delete", "dir", "subfolder"):
                     if not self.need_conn():
                         continue

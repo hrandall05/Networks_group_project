@@ -1,0 +1,16 @@
+{
+ "counters": {
+  "T": 1,
+  "A": 0,
+  "V": 0,
+  "O": 0
+ },
+ "files": {
+  "sample-25mb.txt": {
+   "id": "TS001",
+   "stored": "TS001.txt",
+   "size": 26214400,
+   "sha256": "a41474bddfc6fe98e185b393812c39339eb5381da6fd95dfd638c58b90d04aee"
+  }
+ }
+}

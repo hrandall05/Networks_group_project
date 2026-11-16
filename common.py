@@ -19,7 +19,29 @@ PBKDF2_ITERS = 200_000         # password-hardening cost
 MAX_HEADER = 1024 * 1024       # reject absurd control messages
 
 
-# ----------------------------------------------------------------- messaging
+HELP_TEXT = """\
+Available Commands:
+    connect <ip> <port>                        Connect to the server and log in
+    upload <local_path> [remote name]          Upload a file (asks before overwritting)
+    dowload <name_or_ID> [--drop-after-mb N]   Dowload a file
+file
+    delete <name_or_ID>                        Delete a file on the server
+    dir [path]                                 List files and folders
+    subfolder create/delete <path>             Create or delete a server subfolder
+    stats                                      Show local perforamance summary
+    help                                       Show this message
+    quit                                       Disconnect and exit
+
+Notes:
+  <name_or_ID> can be the file name (e.g. media/big.wav) or its logical ID (e.g. AS001).
+  File IDs: TS = text, AS = audio, VS = video, OS = other.
+  If a download is interrupted, reconnect and run the same download command to resume.
+"""
+
+def help():
+    """Print the list of client commands"""
+    print(HELP_TEXT)
+
 def send_msg(sock, obj):
     """Send one JSON control message."""
     data = json.dumps(obj).encode("utf-8")
@@ -55,7 +77,6 @@ def tune_socket(sock):
             pass
 
 
-# ------------------------------------------------------------- file streaming
 def send_from_file(sock, fobj, nbytes, hasher=None, progress=None):
     """Stream nbytes from an open file to the socket in CHUNK pieces."""
     sent = 0
@@ -99,7 +120,6 @@ def sha256_file(path):
     return h.hexdigest()
 
 
-# ------------------------------------------------------------- authentication
 def derive_key(password, salt):
     """PBKDF2-HMAC-SHA256 key from the password; the password itself never
     leaves the client."""
@@ -111,7 +131,6 @@ def auth_response(key, nonce):
     return hmac.new(key, nonce, hashlib.sha256).hexdigest()
 
 
-# ------------------------------------------------------------------- progress
 class Progress:
     """Throttled console progress bar. Call with bytes done this session."""
 
