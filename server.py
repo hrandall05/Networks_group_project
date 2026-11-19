@@ -154,7 +154,7 @@ class Session(threading.Thread):
         try:
             if self.tls_ctx:
                 self.conn = self.tls_ctx.wrap_socket(self.conn, server_side=True)
-            self.conn.settimeout(120)
+            self.conn.settimeout(300)
             if not self.authenticate():
                 return
             with clients_lock:
